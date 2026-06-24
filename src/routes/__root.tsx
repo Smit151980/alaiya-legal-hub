@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import logoAsset from "../assets/alaiya-logo.png.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -75,8 +76,8 @@ function Header() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-accent" />
-          <span className="font-display text-lg font-semibold tracking-tight">Alaiya</span>
+          <img src={logoAsset.url} alt="Alaiya Technologies logo" className="h-9 w-9 rounded-lg object-cover" />
+          <span className="font-display text-lg font-semibold tracking-tight">Alaiya Technologies</span>
         </Link>
         <nav className="flex items-center gap-6 text-sm">
           <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
@@ -92,14 +93,17 @@ function Footer() {
   return (
     <footer className="border-t border-border/60 bg-card/50">
       <div className="mx-auto max-w-6xl px-6 py-10">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <div className="h-6 w-6 rounded-md bg-gradient-to-br from-primary to-accent" />
+              <img src={logoAsset.url} alt="Alaiya Technologies logo" className="h-7 w-7 rounded-md object-cover" />
               <span className="font-display font-semibold">Alaiya Technologies</span>
             </div>
             <p className="mt-2 text-sm text-muted-foreground max-w-md">
               Building reliable, modern software for ambitious teams.
+            </p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Contact: <a href="tel:+919106158544" className="text-foreground hover:underline">+91 91061 58544</a>
             </p>
           </div>
           <nav className="flex gap-6 text-sm text-muted-foreground">
@@ -109,7 +113,7 @@ function Footer() {
           </nav>
         </div>
         <div className="mt-8 border-t border-border/60 pt-6 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Alaiya Technologies Private Limited. All rights reserved.
+          © {new Date().getFullYear()} Alaiya Technologies (Sole Proprietorship). All rights reserved.
         </div>
       </div>
     </footer>
