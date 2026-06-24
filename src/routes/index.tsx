@@ -32,11 +32,11 @@ function Index() {
               Engineering <span className="text-gradient">tomorrow's software</span>, today.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground md:text-xl">
-              Alaiya Technologies partners with founders and enterprises to design, build, and scale the digital products that move their business forward.
+              Alaiya Technologies (Sole Proprietorship) partners with founders and enterprises to design, build, and scale the digital products that move their business forward.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <a href="#services" className="inline-flex rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90">Explore services</a>
-              <a href="mailto:hello@alaiyatech.com" className="inline-flex rounded-md border border-border bg-card px-5 py-3 text-sm font-medium text-foreground transition hover:bg-muted">Get in touch</a>
+              <a href="tel:+919106158544" className="inline-flex rounded-md border border-border bg-card px-5 py-3 text-sm font-medium text-foreground transition hover:bg-muted">Call +91 91061 58544</a>
             </div>
           </div>
         </div>

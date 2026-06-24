@@ -19,7 +19,7 @@ function Privacy() {
         <p className="text-sm text-muted-foreground">Last updated: January 2025</p>
         <h1 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">Privacy Policy</h1>
         <p className="mt-4 text-muted-foreground">
-          This page is maintained by Alaiya Technologies Private Limited ("Alaiya", "we", "us") to explain how we handle information when you use our website and services.
+          This page is maintained by Alaiya Technologies (Sole Proprietorship) ("Alaiya", "we", "us") to explain how we handle information when you use our website and services.
         </p>
       </header>
 
@@ -46,7 +46,7 @@ function Privacy() {
           <p>We may update this policy from time to time. Updates will be reflected by the "Last updated" date at the top of this page.</p>
         </Section>
         <Section title="8. Contact">
-          <p>Questions about this policy? Email <a className="text-primary hover:underline" href="mailto:privacy@alaiyatech.com">privacy@alaiyatech.com</a>.</p>
+          <p>Questions about this policy? Reach Alaiya Technologies (Sole Proprietorship) by phone at <a className="text-primary hover:underline" href="tel:+919106158544">+91 91061 58544</a>.</p>
         </Section>
       </div>
     </article>

@@ -19,7 +19,7 @@ function Terms() {
         <p className="text-sm text-muted-foreground">Last updated: January 2025</p>
         <h1 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">Terms of Service</h1>
         <p className="mt-4 text-muted-foreground">
-          These terms govern your use of the website and services provided by Alaiya Technologies Private Limited ("Alaiya", "we", "us"). By using our site or services, you agree to these terms.
+          These terms govern your use of the website and services provided by Alaiya Technologies (Sole Proprietorship) ("Alaiya", "we", "us"). By using our site or services, you agree to these terms.
         </p>
       </header>
 
@@ -49,10 +49,10 @@ function Terms() {
           <p>We may update these terms from time to time. Continued use of the site after changes are posted constitutes acceptance of the revised terms.</p>
         </Section>
         <Section title="9. Governing law">
-          <p>These terms are governed by the laws of the jurisdiction in which Alaiya Technologies Private Limited is registered, without regard to its conflict of law provisions.</p>
+          <p>These terms are governed by the laws of India, the jurisdiction in which Alaiya Technologies (Sole Proprietorship) is registered, without regard to its conflict of law provisions.</p>
         </Section>
         <Section title="10. Contact">
-          <p>For questions about these terms, email <a className="text-primary hover:underline" href="mailto:legal@alaiyatech.com">legal@alaiyatech.com</a>.</p>
+          <p>For questions about these terms, call Alaiya Technologies (Sole Proprietorship) at <a className="text-primary hover:underline" href="tel:+919106158544">+91 91061 58544</a>.</p>
         </Section>
       </div>
     </article>
