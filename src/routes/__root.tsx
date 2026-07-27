@@ -8,10 +8,15 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { motion } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import logoAsset from "../assets/alaiya-logo.png.asset.json";
+import { ThemeProvider } from "../lib/theme";
+import { I18nProvider, useI18n } from "../lib/i18n";
+import { ThemeToggle, LanguagePicker } from "../components/Controls";
+import { ScrollProgress } from "../components/ScrollProgress";
 
 function NotFoundComponent() {
   return (
@@ -72,24 +77,39 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function Header() {
+  const { t } = useI18n();
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logoAsset.url} alt="Alaiya Technologies logo" className="h-9 w-9 rounded-lg object-cover" />
+    <motion.header
+      initial={{ y: -30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur"
+    >
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
+        <Link to="/" className="flex items-center gap-2 group">
+          <motion.img
+            whileHover={{ rotate: 8, scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            src={logoAsset.url}
+            alt="Alaiya Technologies logo"
+            className="h-9 w-9 rounded-lg object-cover"
+          />
           <span className="font-display text-lg font-semibold tracking-tight">Alaiya Technologies</span>
         </Link>
-        <nav className="flex items-center gap-6 text-sm">
-          <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-          <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
-          <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
+        <nav className="flex items-center gap-4 md:gap-6 text-sm">
+          <Link to="/" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.home")}</Link>
+          <Link to="/privacy" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.privacy")}</Link>
+          <Link to="/terms" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.terms")}</Link>
+          <LanguagePicker />
+          <ThemeToggle />
         </nav>
       </div>
-    </header>
+    </motion.header>
   );
 }
 
 function Footer() {
+  const { t } = useI18n();
   return (
     <footer className="border-t border-border/60 bg-card/50">
       <div className="mx-auto max-w-6xl px-6 py-10">
@@ -99,21 +119,19 @@ function Footer() {
               <img src={logoAsset.url} alt="Alaiya Technologies logo" className="h-7 w-7 rounded-md object-cover" />
               <span className="font-display font-semibold">Alaiya Technologies</span>
             </div>
-            <p className="mt-2 text-sm text-muted-foreground max-w-md">
-              Building reliable, modern software for ambitious teams.
-            </p>
+            <p className="mt-2 text-sm text-muted-foreground max-w-md">{t("footer.tag")}</p>
             <p className="mt-3 text-sm text-muted-foreground">
-              Contact: <a href="tel:+919106158544" className="text-foreground hover:underline">+91 91061 58544</a>
+              {t("footer.contact")}: <a href="tel:+919106158544" className="text-foreground hover:underline">+91 91061 58544</a>
             </p>
           </div>
           <nav className="flex gap-6 text-sm text-muted-foreground">
-            <Link to="/" className="hover:text-foreground">Home</Link>
-            <Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-foreground">Terms of Service</Link>
+            <Link to="/" className="hover:text-foreground">{t("nav.home")}</Link>
+            <Link to="/privacy" className="hover:text-foreground">{t("nav.privacy")}</Link>
+            <Link to="/terms" className="hover:text-foreground">{t("nav.terms")}</Link>
           </nav>
         </div>
         <div className="mt-8 border-t border-border/60 pt-6 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Alaiya Technologies (Sole Proprietorship). All rights reserved.
+          © {new Date().getFullYear()} Alaiya Technologies (Sole Proprietorship). {t("footer.rights")}
         </div>
       </div>
     </footer>
@@ -124,11 +142,16 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1"><Outlet /></main>
-        <Footer />
-      </div>
+      <ThemeProvider>
+        <I18nProvider>
+          <ScrollProgress />
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1"><Outlet /></main>
+            <Footer />
+          </div>
+        </I18nProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

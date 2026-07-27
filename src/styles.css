@@ -2,7 +2,7 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -45,25 +45,74 @@
   --ring: oklch(0.55 0.18 220);
 }
 
+.dark {
+  --background: oklch(0.15 0.02 250);
+  --foreground: oklch(0.97 0.005 240);
+  --card: oklch(0.19 0.025 250);
+  --card-foreground: oklch(0.97 0.005 240);
+  --primary: oklch(0.72 0.17 220);
+  --primary-foreground: oklch(0.12 0.02 250);
+  --secondary: oklch(0.24 0.03 250);
+  --secondary-foreground: oklch(0.95 0.005 240);
+  --muted: oklch(0.22 0.02 250);
+  --muted-foreground: oklch(0.7 0.02 250);
+  --accent: oklch(0.78 0.16 180);
+  --accent-foreground: oklch(0.12 0.02 250);
+  --border: oklch(0.28 0.02 250);
+  --ring: oklch(0.72 0.17 220);
+}
+
 @layer base {
   * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
   body {
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 }
 
 @utility gradient-hero {
-  background: radial-gradient(ellipse at top, oklch(0.72 0.16 180 / 0.15), transparent 60%),
-              radial-gradient(ellipse at bottom left, oklch(0.55 0.18 220 / 0.18), transparent 55%),
-              var(--color-background);
+  position: relative;
+  background:
+    radial-gradient(ellipse at top, oklch(from var(--accent) l c h / 0.18), transparent 60%),
+    radial-gradient(ellipse at bottom left, oklch(from var(--primary) l c h / 0.22), transparent 55%),
+    var(--color-background);
+  overflow: hidden;
 }
 
 @utility text-gradient {
-  background: linear-gradient(135deg, oklch(0.55 0.18 220), oklch(0.72 0.16 180));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+@keyframes blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.1); }
+  66% { transform: translate(-25px, 25px) scale(0.95); }
+}
+@utility blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: blob-float 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes grid-pan {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+@utility grid-bg {
+  background-image:
+    linear-gradient(to right, oklch(from var(--foreground) l c h / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(from var(--foreground) l c h / 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-pan 20s linear infinite;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
 }
