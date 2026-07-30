@@ -110,7 +110,17 @@ function Index() {
               </div>
             </div>
 
-            <Terminal />
+            <motion.div
+              initial={{ opacity: 0, x: 40, rotateY: -12 }}
+              animate={{ opacity: 1, x: 0, rotateY: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-4"
+              style={{ transformPerspective: 1000 }}
+            >
+              <Terminal />
+              <StatusPanel />
+            </motion.div>
+
           </div>
         </motion.div>
       </section>
@@ -121,7 +131,10 @@ function Index() {
         <Reveal>
           <div className="max-w-2xl">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">// services</span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">{t("services.title")}</h2>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+              <GlitchText text={t("services.title")} />
+            </h2>
+
             <p className="mt-4 text-muted-foreground">{t("services.sub")}</p>
           </div>
         </Reveal>
