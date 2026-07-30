@@ -143,25 +143,27 @@ function Index() {
             const Icon = SERVICE_ICONS[i];
             return (
               <Reveal key={s.title} delay={i * 0.08}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="group relative overflow-hidden rounded-2xl border border-border bg-card p-8 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 transition-opacity group-hover:opacity-100" />
+                <TiltCard className="group neon-border relative h-full overflow-hidden rounded-2xl border border-border bg-card p-8 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10">
+                  <div className="scanline opacity-0 transition-opacity group-hover:opacity-100" />
                   <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative">
+                  <div className="relative z-10">
                     <div className="flex items-center justify-between">
-                      <motion.div whileHover={{ rotate: 8, scale: 1.1 }} className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
+                      <motion.div
+                        whileHover={{ rotate: 12, scale: 1.12 }}
+                        transition={{ type: "spring", stiffness: 320, damping: 14 }}
+                        className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30"
+                      >
                         <Icon className="h-6 w-6 text-primary-foreground" />
                       </motion.div>
-                      <span className="font-mono text-xs text-muted-foreground">0{i + 1}</span>
+                      <span className="font-mono text-xs text-muted-foreground blink">0{i + 1}</span>
                     </div>
                     <h3 className="mt-6 text-xl font-semibold">{s.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                    <div className="mt-6 h-px w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover:w-full" />
                   </div>
-                </motion.div>
+                </TiltCard>
               </Reveal>
+
             );
           })}
         </div>
