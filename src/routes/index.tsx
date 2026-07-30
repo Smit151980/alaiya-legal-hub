@@ -1,13 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { Terminal as TerminalIcon, Cpu, Cloud, Sparkles, Code2, Database, Shield, GitBranch, ArrowRight } from "lucide-react";
+import { Terminal as TerminalIcon, Cloud, Sparkles, Code2, Database, Shield, GitBranch, ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Reveal } from "@/components/Reveal";
 import { Terminal } from "@/components/Terminal";
 import { TechMarquee } from "@/components/TechMarquee";
 import { CodeRain } from "@/components/CodeRain";
 import { TechBadges } from "@/components/TechBadges";
+import { CursorGlow } from "@/components/CursorGlow";
+import { Counter } from "@/components/Counter";
+import { TiltCard } from "@/components/TiltCard";
+import { GlitchText } from "@/components/GlitchText";
+import { CircuitLines } from "@/components/CircuitLines";
+import { StatusPanel } from "@/components/StatusPanel";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
