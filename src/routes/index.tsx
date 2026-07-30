@@ -34,8 +34,11 @@ function Index() {
   const { t } = useI18n();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, 140]), { stiffness: 120, damping: 24 });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(6px)"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+
 
   const services = [
     { title: t("s1.t"), desc: t("s1.d") },
@@ -59,13 +62,17 @@ function Index() {
 
   return (
     <>
+      <CursorGlow />
       <section ref={heroRef} className="gradient-hero relative">
         <div className="absolute inset-0 grid-bg" aria-hidden />
+        <div className="absolute inset-0 dot-grid opacity-40" aria-hidden />
         <CodeRain />
+        <CircuitLines className="opacity-60" />
         <div className="blob left-[-10%] top-[-10%] h-[380px] w-[380px]" style={{ background: "var(--color-primary)" }} aria-hidden />
         <div className="blob right-[-8%] top-[20%] h-[420px] w-[420px]" style={{ background: "var(--color-accent)", animationDelay: "-6s" }} aria-hidden />
 
-        <motion.div style={{ y, opacity }} className="mx-auto max-w-6xl px-6 py-24 md:py-28 relative">
+        <motion.div style={{ y, opacity, scale, filter: blur }} className="mx-auto max-w-6xl px-6 py-24 md:py-28 relative">
+
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
             <div>
               <motion.span
