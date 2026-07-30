@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import logoAsset from "../assets/alaiya-logo.png.asset.json";
+import logoAsset from "../assets/alaiya-logo.ico.asset.json";
 import { ThemeProvider } from "../lib/theme";
 import { I18nProvider, useI18n } from "../lib/i18n";
 import { ThemeToggle, LanguagePicker } from "../components/Controls";
