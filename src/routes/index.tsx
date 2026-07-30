@@ -175,30 +175,40 @@ function Index() {
           <Reveal>
             <div className="max-w-2xl">
               <span className="font-mono text-xs uppercase tracking-widest text-accent">// workflow</span>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">How we build</h2>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl"><GlitchText text="How we build" /></h2>
               <p className="mt-4 text-muted-foreground">A pragmatic engineering loop tuned for velocity without cutting corners.</p>
             </div>
           </Reveal>
           <div className="mt-12 grid gap-4 md:grid-cols-4">
             {workflow.map((w, i) => (
               <Reveal key={w.k} delay={i * 0.08}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="relative rounded-xl border border-border bg-background/70 backdrop-blur p-6 h-full"
-                >
-                  <div className="flex items-center justify-between">
-                    <w.icon className="h-5 w-5 text-primary" />
-                    <span className="font-mono text-xs text-muted-foreground">{w.k}</span>
-                  </div>
-                  <h3 className="mt-4 font-semibold">{w.t}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{w.d}</p>
-                  {i < workflow.length - 1 && (
-                    <div className="absolute -right-2 top-1/2 hidden md:block">
-                      <ArrowRight className="h-4 w-4 text-primary/40" />
+                <TiltCard className="neon-border group relative h-full rounded-xl border border-border bg-background/70 p-6 backdrop-blur">
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between">
+                      <motion.span
+                        animate={{ y: [0, -4, 0] }}
+                        transition={{ duration: 3, repeat: Infinity, delay: i * 0.3, ease: "easeInOut" }}
+                        className="inline-flex"
+                      >
+                        <w.icon className="h-5 w-5 text-primary" />
+                      </motion.span>
+                      <span className="font-mono text-xs text-muted-foreground">{w.k}</span>
                     </div>
+                    <h3 className="mt-4 font-semibold">{w.t}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{w.d}</p>
+                  </div>
+                  {i < workflow.length - 1 && (
+                    <motion.div
+                      animate={{ x: [0, 5, 0], opacity: [0.3, 1, 0.3] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.25 }}
+                      className="absolute -right-2 top-1/2 hidden md:block"
+                    >
+                      <ArrowRight className="h-4 w-4 text-primary" />
+                    </motion.div>
                   )}
-                </motion.div>
+                </TiltCard>
               </Reveal>
+
             ))}
           </div>
         </div>
@@ -220,13 +230,16 @@ function Index() {
           <div className="grid grid-cols-2 gap-4">
             {stats.map((stat, i) => (
               <Reveal key={stat.v} delay={i * 0.08}>
-                <motion.div whileHover={{ scale: 1.04, y: -3 }} className="relative overflow-hidden rounded-xl border border-border bg-card p-6">
+                <TiltCard className="neon-border relative h-full overflow-hidden rounded-xl border border-border bg-card p-6">
                   <Database className="absolute -right-3 -bottom-3 h-16 w-16 text-primary/5" />
-                  <div className="font-display text-3xl font-bold text-gradient">{stat.k}</div>
-                  <div className="mt-1 text-sm text-muted-foreground">{stat.v}</div>
-                </motion.div>
+                  <div className="relative z-10 font-display text-3xl font-bold text-gradient tabular-nums">
+                    <Counter value={stat.k} />
+                  </div>
+                  <div className="relative z-10 mt-1 text-sm text-muted-foreground">{stat.v}</div>
+                </TiltCard>
               </Reveal>
             ))}
+
           </div>
         </div>
       </section>
