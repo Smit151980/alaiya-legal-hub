@@ -139,3 +139,84 @@
 }
 
 .font-mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+
+/* pointer spotlight that follows the cursor across a card */
+@utility spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), oklch(from var(--primary) l c h / 0.18), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.spotlight:hover::before { opacity: 1; }
+
+@keyframes glitch-a {
+  0%, 92%, 100% { transform: translate(0); opacity: 0; }
+  93% { transform: translate(-2px, 1px); opacity: 0.85; }
+  96% { transform: translate(2px, -1px); opacity: 0.85; }
+}
+@keyframes glitch-b {
+  0%, 90%, 100% { transform: translate(0); opacity: 0; }
+  94% { transform: translate(2px, -2px); opacity: 0.7; }
+  98% { transform: translate(-2px, 2px); opacity: 0.7; }
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.glitch::before { color: var(--color-primary); animation: glitch-a 5s infinite steps(1); }
+.glitch::after { color: var(--color-accent); animation: glitch-b 5s infinite steps(1); }
+
+@keyframes border-spin {
+  to { transform: rotate(1turn); }
+}
+@utility neon-border {
+  position: relative;
+}
+.neon-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from 0deg, transparent 0 55%, var(--color-primary) 75%, var(--color-accent) 85%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: border-spin 4s linear infinite;
+  pointer-events: none;
+}
+.neon-border:hover::after { opacity: 1; }
+
+@keyframes noise-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 120px 120px; }
+}
+@utility dot-grid {
+  background-image: radial-gradient(oklch(from var(--foreground) l c h / 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+  animation: noise-shift 30s linear infinite;
+}
+
+@keyframes ticker {
+  0% { opacity: 0.35; }
+  50% { opacity: 1; }
+  100% { opacity: 0.35; }
+}
+@utility blink {
+  animation: ticker 1.6s ease-in-out infinite;
+}
+

@@ -1,13 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { Terminal as TerminalIcon, Cpu, Cloud, Sparkles, Code2, Database, Shield, GitBranch, ArrowRight } from "lucide-react";
+import { Terminal as TerminalIcon, Cloud, Sparkles, Code2, Database, Shield, GitBranch, ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Reveal } from "@/components/Reveal";
 import { Terminal } from "@/components/Terminal";
 import { TechMarquee } from "@/components/TechMarquee";
 import { CodeRain } from "@/components/CodeRain";
 import { TechBadges } from "@/components/TechBadges";
+import { CursorGlow } from "@/components/CursorGlow";
+import { Counter } from "@/components/Counter";
+import { TiltCard } from "@/components/TiltCard";
+import { GlitchText } from "@/components/GlitchText";
+import { CircuitLines } from "@/components/CircuitLines";
+import { StatusPanel } from "@/components/StatusPanel";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,8 +34,11 @@ function Index() {
   const { t } = useI18n();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, 140]), { stiffness: 120, damping: 24 });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(6px)"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+
 
   const services = [
     { title: t("s1.t"), desc: t("s1.d") },
@@ -52,13 +62,17 @@ function Index() {
 
   return (
     <>
+      <CursorGlow />
       <section ref={heroRef} className="gradient-hero relative">
         <div className="absolute inset-0 grid-bg" aria-hidden />
+        <div className="absolute inset-0 dot-grid opacity-40" aria-hidden />
         <CodeRain />
+        <CircuitLines className="opacity-60" />
         <div className="blob left-[-10%] top-[-10%] h-[380px] w-[380px]" style={{ background: "var(--color-primary)" }} aria-hidden />
         <div className="blob right-[-8%] top-[20%] h-[420px] w-[420px]" style={{ background: "var(--color-accent)", animationDelay: "-6s" }} aria-hidden />
 
-        <motion.div style={{ y, opacity }} className="mx-auto max-w-6xl px-6 py-24 md:py-28 relative">
+        <motion.div style={{ y, opacity, scale, filter: blur }} className="mx-auto max-w-6xl px-6 py-24 md:py-28 relative">
+
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
             <div>
               <motion.span
@@ -96,7 +110,17 @@ function Index() {
               </div>
             </div>
 
-            <Terminal />
+            <motion.div
+              initial={{ opacity: 0, x: 40, rotateY: -12 }}
+              animate={{ opacity: 1, x: 0, rotateY: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-4"
+              style={{ transformPerspective: 1000 }}
+            >
+              <Terminal />
+              <StatusPanel />
+            </motion.div>
+
           </div>
         </motion.div>
       </section>
@@ -107,7 +131,10 @@ function Index() {
         <Reveal>
           <div className="max-w-2xl">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">// services</span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">{t("services.title")}</h2>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+              <GlitchText text={t("services.title")} />
+            </h2>
+
             <p className="mt-4 text-muted-foreground">{t("services.sub")}</p>
           </div>
         </Reveal>
@@ -116,25 +143,27 @@ function Index() {
             const Icon = SERVICE_ICONS[i];
             return (
               <Reveal key={s.title} delay={i * 0.08}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="group relative overflow-hidden rounded-2xl border border-border bg-card p-8 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 transition-opacity group-hover:opacity-100" />
+                <TiltCard className="group neon-border relative h-full overflow-hidden rounded-2xl border border-border bg-card p-8 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10">
+                  <div className="scanline opacity-0 transition-opacity group-hover:opacity-100" />
                   <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative">
+                  <div className="relative z-10">
                     <div className="flex items-center justify-between">
-                      <motion.div whileHover={{ rotate: 8, scale: 1.1 }} className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30">
+                      <motion.div
+                        whileHover={{ rotate: 12, scale: 1.12 }}
+                        transition={{ type: "spring", stiffness: 320, damping: 14 }}
+                        className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30"
+                      >
                         <Icon className="h-6 w-6 text-primary-foreground" />
                       </motion.div>
-                      <span className="font-mono text-xs text-muted-foreground">0{i + 1}</span>
+                      <span className="font-mono text-xs text-muted-foreground blink">0{i + 1}</span>
                     </div>
                     <h3 className="mt-6 text-xl font-semibold">{s.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                    <div className="mt-6 h-px w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover:w-full" />
                   </div>
-                </motion.div>
+                </TiltCard>
               </Reveal>
+
             );
           })}
         </div>
@@ -146,30 +175,40 @@ function Index() {
           <Reveal>
             <div className="max-w-2xl">
               <span className="font-mono text-xs uppercase tracking-widest text-accent">// workflow</span>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">How we build</h2>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl"><GlitchText text="How we build" /></h2>
               <p className="mt-4 text-muted-foreground">A pragmatic engineering loop tuned for velocity without cutting corners.</p>
             </div>
           </Reveal>
           <div className="mt-12 grid gap-4 md:grid-cols-4">
             {workflow.map((w, i) => (
               <Reveal key={w.k} delay={i * 0.08}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="relative rounded-xl border border-border bg-background/70 backdrop-blur p-6 h-full"
-                >
-                  <div className="flex items-center justify-between">
-                    <w.icon className="h-5 w-5 text-primary" />
-                    <span className="font-mono text-xs text-muted-foreground">{w.k}</span>
-                  </div>
-                  <h3 className="mt-4 font-semibold">{w.t}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{w.d}</p>
-                  {i < workflow.length - 1 && (
-                    <div className="absolute -right-2 top-1/2 hidden md:block">
-                      <ArrowRight className="h-4 w-4 text-primary/40" />
+                <TiltCard className="neon-border group relative h-full rounded-xl border border-border bg-background/70 p-6 backdrop-blur">
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between">
+                      <motion.span
+                        animate={{ y: [0, -4, 0] }}
+                        transition={{ duration: 3, repeat: Infinity, delay: i * 0.3, ease: "easeInOut" }}
+                        className="inline-flex"
+                      >
+                        <w.icon className="h-5 w-5 text-primary" />
+                      </motion.span>
+                      <span className="font-mono text-xs text-muted-foreground">{w.k}</span>
                     </div>
+                    <h3 className="mt-4 font-semibold">{w.t}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{w.d}</p>
+                  </div>
+                  {i < workflow.length - 1 && (
+                    <motion.div
+                      animate={{ x: [0, 5, 0], opacity: [0.3, 1, 0.3] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.25 }}
+                      className="absolute -right-2 top-1/2 hidden md:block"
+                    >
+                      <ArrowRight className="h-4 w-4 text-primary" />
+                    </motion.div>
                   )}
-                </motion.div>
+                </TiltCard>
               </Reveal>
+
             ))}
           </div>
         </div>
@@ -191,13 +230,16 @@ function Index() {
           <div className="grid grid-cols-2 gap-4">
             {stats.map((stat, i) => (
               <Reveal key={stat.v} delay={i * 0.08}>
-                <motion.div whileHover={{ scale: 1.04, y: -3 }} className="relative overflow-hidden rounded-xl border border-border bg-card p-6">
+                <TiltCard className="neon-border relative h-full overflow-hidden rounded-xl border border-border bg-card p-6">
                   <Database className="absolute -right-3 -bottom-3 h-16 w-16 text-primary/5" />
-                  <div className="font-display text-3xl font-bold text-gradient">{stat.k}</div>
-                  <div className="mt-1 text-sm text-muted-foreground">{stat.v}</div>
-                </motion.div>
+                  <div className="relative z-10 font-display text-3xl font-bold text-gradient tabular-nums">
+                    <Counter value={stat.k} />
+                  </div>
+                  <div className="relative z-10 mt-1 text-sm text-muted-foreground">{stat.v}</div>
+                </TiltCard>
               </Reveal>
             ))}
+
           </div>
         </div>
       </section>
