@@ -98,6 +98,7 @@ function Header() {
         </Link>
         <nav className="flex items-center gap-4 md:gap-6 text-sm">
           <Link to="/" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.home")}</Link>
+          <Link to="/careers" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.careers")}</Link>
           <Link to="/privacy" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.privacy")}</Link>
           <Link to="/terms" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.terms")}</Link>
           <LanguagePicker />
@@ -126,6 +127,7 @@ function Footer() {
           </div>
           <nav className="flex gap-6 text-sm text-muted-foreground">
             <Link to="/" className="hover:text-foreground">{t("nav.home")}</Link>
+            <Link to="/careers" className="hover:text-foreground">{t("nav.careers")}</Link>
             <Link to="/privacy" className="hover:text-foreground">{t("nav.privacy")}</Link>
             <Link to="/terms" className="hover:text-foreground">{t("nav.terms")}</Link>
           </nav>
