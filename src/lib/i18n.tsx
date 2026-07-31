@@ -19,6 +19,7 @@ type Dict = Record<string, string>;
 
 const en: Dict = {
   "nav.home": "Home",
+  "nav.careers": "Careers",
   "nav.privacy": "Privacy",
   "nav.terms": "Terms",
   "hero.badge": "A modern software studio",
@@ -54,7 +55,7 @@ const en: Dict = {
 const dict: Record<LangCode, Dict> = {
   en,
   es: {
-    "nav.home": "Inicio", "nav.privacy": "Privacidad", "nav.terms": "Términos",
+    "nav.home": "Inicio", "nav.careers": "Empleo", "nav.privacy": "Privacidad", "nav.terms": "Términos",
     "hero.badge": "Un estudio de software moderno",
     "hero.title.a": "Diseñando", "hero.title.b": "el software del mañana", "hero.title.c": ", hoy.",
     "hero.desc": "Alaiya Technologies (Propietario Único) colabora con fundadores y empresas para diseñar, construir y escalar productos digitales que impulsan su negocio.",
@@ -72,7 +73,7 @@ const dict: Record<LangCode, Dict> = {
     "theme.toggle": "Cambiar tema", "lang.select": "Idioma",
   },
   fr: {
-    "nav.home": "Accueil", "nav.privacy": "Confidentialité", "nav.terms": "Conditions",
+    "nav.home": "Accueil", "nav.careers": "Carrières", "nav.privacy": "Confidentialité", "nav.terms": "Conditions",
     "hero.badge": "Un studio logiciel moderne",
     "hero.title.a": "Concevoir", "hero.title.b": "le logiciel de demain", "hero.title.c": ", aujourd'hui.",
     "hero.desc": "Alaiya Technologies (Entreprise individuelle) accompagne fondateurs et entreprises pour concevoir, construire et faire évoluer leurs produits numériques.",
@@ -90,7 +91,7 @@ const dict: Record<LangCode, Dict> = {
     "theme.toggle": "Changer de thème", "lang.select": "Langue",
   },
   de: {
-    "nav.home": "Start", "nav.privacy": "Datenschutz", "nav.terms": "AGB",
+    "nav.home": "Start", "nav.careers": "Karriere", "nav.privacy": "Datenschutz", "nav.terms": "AGB",
     "hero.badge": "Ein modernes Software-Studio",
     "hero.title.a": "Wir entwickeln", "hero.title.b": "die Software von morgen", "hero.title.c": " — heute.",
     "hero.desc": "Alaiya Technologies (Einzelunternehmen) unterstützt Gründer und Unternehmen beim Entwerfen, Bauen und Skalieren digitaler Produkte.",
@@ -108,7 +109,7 @@ const dict: Record<LangCode, Dict> = {
     "theme.toggle": "Theme wechseln", "lang.select": "Sprache",
   },
   pt: {
-    "nav.home": "Início", "nav.privacy": "Privacidade", "nav.terms": "Termos",
+    "nav.home": "Início", "nav.careers": "Carreiras", "nav.privacy": "Privacidade", "nav.terms": "Termos",
     "hero.badge": "Um estúdio de software moderno",
     "hero.title.a": "Projetando", "hero.title.b": "o software de amanhã", "hero.title.c": ", hoje.",
     "hero.desc": "Alaiya Technologies (Empresário Individual) faz parceria com fundadores e empresas para projetar, construir e escalar produtos digitais.",
@@ -126,7 +127,7 @@ const dict: Record<LangCode, Dict> = {
     "theme.toggle": "Alternar tema", "lang.select": "Idioma",
   },
   hi: {
-    "nav.home": "होम", "nav.privacy": "गोपनीयता", "nav.terms": "शर्तें",
+    "nav.home": "होम", "nav.careers": "करियर", "nav.privacy": "गोपनीयता", "nav.terms": "शर्तें",
     "hero.badge": "एक आधुनिक सॉफ्टवेयर स्टूडियो",
     "hero.title.a": "बना रहे हैं", "hero.title.b": "कल का सॉफ्टवेयर", "hero.title.c": ", आज।",
     "hero.desc": "अलाया टेक्नोलॉजीज (एकल स्वामित्व) संस्थापकों और उद्यमों के साथ मिलकर डिजिटल उत्पाद डिज़ाइन, निर्माण और स्केल करती है।",
@@ -144,7 +145,7 @@ const dict: Record<LangCode, Dict> = {
     "theme.toggle": "थीम बदलें", "lang.select": "भाषा",
   },
   ja: {
-    "nav.home": "ホーム", "nav.privacy": "プライバシー", "nav.terms": "利用規約",
+    "nav.home": "ホーム", "nav.careers": "採用情報", "nav.privacy": "プライバシー", "nav.terms": "利用規約",
     "hero.badge": "モダンなソフトウェアスタジオ",
     "hero.title.a": "築くのは", "hero.title.b": "明日のソフトウェア", "hero.title.c": "、今日。",
     "hero.desc": "Alaiya Technologies（個人事業主）は、創業者や企業と共にデジタル製品を設計・構築・拡大します。",
@@ -162,7 +163,7 @@ const dict: Record<LangCode, Dict> = {
     "theme.toggle": "テーマ切替", "lang.select": "言語",
   },
   zh: {
-    "nav.home": "首页", "nav.privacy": "隐私", "nav.terms": "条款",
+    "nav.home": "首页", "nav.careers": "招聘", "nav.privacy": "隐私", "nav.terms": "条款",
     "hero.badge": "现代软件工作室",
     "hero.title.a": "构建", "hero.title.b": "明日的软件", "hero.title.c": "，就在今天。",
     "hero.desc": "Alaiya Technologies（个人独资）与创始人和企业携手设计、构建并扩展数字产品。",
@@ -180,7 +181,7 @@ const dict: Record<LangCode, Dict> = {
     "theme.toggle": "切换主题", "lang.select": "语言",
   },
   ar: {
-    "nav.home": "الرئيسية", "nav.privacy": "الخصوصية", "nav.terms": "الشروط",
+    "nav.home": "الرئيسية", "nav.careers": "الوظائف", "nav.privacy": "الخصوصية", "nav.terms": "الشروط",
     "hero.badge": "استوديو برمجيات حديث",
     "hero.title.a": "نصنع", "hero.title.b": "برمجيات الغد", "hero.title.c": "، اليوم.",
     "hero.desc": "تتعاون Alaiya Technologies (مؤسسة فردية) مع المؤسسين والشركات لتصميم وبناء وتوسيع المنتجات الرقمية.",
@@ -198,7 +199,7 @@ const dict: Record<LangCode, Dict> = {
     "theme.toggle": "تبديل السمة", "lang.select": "اللغة",
   },
   ru: {
-    "nav.home": "Главная", "nav.privacy": "Приватность", "nav.terms": "Условия",
+    "nav.home": "Главная", "nav.careers": "Карьера", "nav.privacy": "Приватность", "nav.terms": "Условия",
     "hero.badge": "Современная софтверная студия",
     "hero.title.a": "Создаём", "hero.title.b": "программы завтрашнего дня", "hero.title.c": ", уже сегодня.",
     "hero.desc": "Alaiya Technologies (ИП) сотрудничает с основателями и компаниями, чтобы проектировать, строить и масштабировать цифровые продукты.",
