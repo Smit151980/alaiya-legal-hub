@@ -14,6 +14,7 @@ import { TiltCard } from "@/components/TiltCard";
 import { GlitchText } from "@/components/GlitchText";
 import { CircuitLines } from "@/components/CircuitLines";
 import { StatusPanel } from "@/components/StatusPanel";
+import { ReviewsCarousel } from "@/components/ReviewsCarousel";
 
 
 export const Route = createFileRoute("/")({
