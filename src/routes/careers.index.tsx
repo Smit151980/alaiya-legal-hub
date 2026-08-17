@@ -1,11 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Reveal } from "../components/Reveal";
 import { TiltCard } from "../components/TiltCard";
 import { GlitchText } from "../components/GlitchText";
+import { ROLES } from "../lib/roles";
 import { Briefcase, MapPin, Clock, Rocket, Users, Laptop, GraduationCap, Phone } from "lucide-react";
 
-export const Route = createFileRoute("/careers")({
+export const Route = createFileRoute("/careers/")({
   head: () => ({
     meta: [
       { title: "Careers — Join Alaiya Technologies" },
@@ -13,19 +14,13 @@ export const Route = createFileRoute("/careers")({
       { property: "og:title", content: "Careers — Join Alaiya Technologies" },
       { property: "og:description", content: "Open roles in cloud, AI, and product engineering at Alaiya Technologies." },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Careers,
 });
 
-const roles = [
-  { title: "Full-Stack Engineer", type: "Full-time", loc: "Remote / India", exp: "2–5 yrs", stack: ["TypeScript", "React", "Node", "Postgres"], desc: "Own features end to end — from schema design to polished UI — on client and internal products." },
-  { title: "Cloud / DevOps Engineer", type: "Full-time", loc: "Remote / India", exp: "3–6 yrs", stack: ["AWS", "Terraform", "Kubernetes", "CI/CD"], desc: "Build reliable, observable infrastructure and keep deployment pipelines fast and boring." },
-  { title: "AI / ML Engineer", type: "Full-time", loc: "Remote", exp: "2–5 yrs", stack: ["Python", "LLMs", "RAG", "Vector DBs"], desc: "Ship model-powered features: retrieval pipelines, evals, and production inference." },
-  { title: "Product Designer", type: "Contract", loc: "Remote", exp: "3+ yrs", stack: ["Figma", "Design systems", "Prototyping"], desc: "Turn complex workflows into interfaces that feel obvious and fast." },
-  { title: "Engineering Intern", type: "Internship", loc: "Remote / India", exp: "0–1 yr", stack: ["JavaScript", "Git", "Curiosity"], desc: "Six-month paid internship with real shipping work and senior mentorship." },
-  { title: "QA / Automation Engineer", type: "Full-time", loc: "Remote / India", exp: "2–4 yrs", stack: ["Playwright", "TypeScript", "API testing"], desc: "Own quality: automated suites, release checks, and regression safety nets." },
-];
+const roles = ROLES;
 
 const perks = [
   { icon: Laptop, t: "Remote-first", d: "Work from anywhere in India, with flexible hours around a light overlap window." },
@@ -112,12 +107,13 @@ function Careers() {
                     </span>
                   ))}
                 </div>
-                <a
-                  href="tel:+919106158544"
+                <Link
+                  to="/careers/$roleSlug"
+                  params={{ roleSlug: r.slug }}
                   className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                 >
-                  Apply by phone <span className="transition-transform group-hover:translate-x-1">→</span>
-                </a>
+                  View role &amp; apply <span className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
               </TiltCard>
             </Reveal>
           ))}
