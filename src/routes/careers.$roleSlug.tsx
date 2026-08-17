@@ -42,7 +42,7 @@ export const Route = createFileRoute("/careers/$roleSlug")({
       ],
     };
   },
-  component: RolePage;
+  component: RolePage,
 });
 
 const MAX_BYTES = 5 * 1024 * 1024;
