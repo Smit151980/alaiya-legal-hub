@@ -6,7 +6,7 @@ import { GlitchText } from "../components/GlitchText";
 import { ROLES } from "../lib/roles";
 import { Briefcase, MapPin, Clock, Rocket, Users, Laptop, GraduationCap, Phone } from "lucide-react";
 
-export const Route = createFileRoute("/careers")({
+export const Route = createFileRoute("/careers/")({
   head: () => ({
     meta: [
       { title: "Careers — Join Alaiya Technologies" },
