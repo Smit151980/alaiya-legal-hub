@@ -13,6 +13,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CareersRoleSlugRouteImport } from './routes/careers.$roleSlug'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -34,37 +35,51 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersRoleSlugRoute = CareersRoleSlugRouteImport.update({
+  id: '/$roleSlug',
+  path: '/$roleSlug',
+  getParentRoute: () => CareersRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/careers': typeof CareersRoute
+  '/careers': typeof CareersRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/careers/$roleSlug': typeof CareersRoleSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/careers': typeof CareersRoute
+  '/careers': typeof CareersRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/careers/$roleSlug': typeof CareersRoleSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/careers': typeof CareersRoute
+  '/careers': typeof CareersRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/careers/$roleSlug': typeof CareersRoleSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/careers' | '/privacy' | '/terms'
+  fullPaths: '/' | '/careers' | '/privacy' | '/terms' | '/careers/$roleSlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/careers' | '/privacy' | '/terms'
-  id: '__root__' | '/' | '/careers' | '/privacy' | '/terms'
+  to: '/' | '/careers' | '/privacy' | '/terms' | '/careers/$roleSlug'
+  id:
+    | '__root__'
+    | '/'
+    | '/careers'
+    | '/privacy'
+    | '/terms'
+    | '/careers/$roleSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CareersRoute: typeof CareersRoute
+  CareersRoute: typeof CareersRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
 }
@@ -99,12 +114,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers/$roleSlug': {
+      id: '/careers/$roleSlug'
+      path: '/$roleSlug'
+      fullPath: '/careers/$roleSlug'
+      preLoaderRoute: typeof CareersRoleSlugRouteImport
+      parentRoute: typeof CareersRoute
+    }
   }
 }
 
+interface CareersRouteChildren {
+  CareersRoleSlugRoute: typeof CareersRoleSlugRoute
+}
+
+const CareersRouteChildren: CareersRouteChildren = {
+  CareersRoleSlugRoute: CareersRoleSlugRoute,
+}
+
+const CareersRouteWithChildren =
+  CareersRoute._addFileChildren(CareersRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CareersRoute: CareersRoute,
+  CareersRoute: CareersRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
 }
