@@ -107,12 +107,13 @@ function Careers() {
                     </span>
                   ))}
                 </div>
-                <a
-                  href="tel:+919106158544"
+                <Link
+                  to="/careers/$roleSlug"
+                  params={{ roleSlug: r.slug }}
                   className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                 >
-                  Apply by phone <span className="transition-transform group-hover:translate-x-1">→</span>
-                </a>
+                  View role &amp; apply <span className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
               </TiltCard>
             </Reveal>
           ))}

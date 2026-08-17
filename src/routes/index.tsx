@@ -214,6 +214,23 @@ function Index() {
         </div>
       </section>
 
+      <section className="border-y border-border/60 bg-card/20">
+        <div className="mx-auto max-w-4xl px-6 py-24">
+          <Reveal>
+            <span className="font-mono text-xs uppercase tracking-widest text-primary">// clients</span>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight md:text-4xl">
+              <GlitchText text="What clients say" />
+            </h2>
+            <p className="mt-2 text-muted-foreground">Reviews from teams we've shipped with.</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-10">
+              <ReviewsCarousel />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-6 py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <Reveal>
