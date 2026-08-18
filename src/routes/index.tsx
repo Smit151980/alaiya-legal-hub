@@ -15,6 +15,9 @@ import { GlitchText } from "@/components/GlitchText";
 import { CircuitLines } from "@/components/CircuitLines";
 import { StatusPanel } from "@/components/StatusPanel";
 import { ReviewsCarousel } from "@/components/ReviewsCarousel";
+import { ParticleField } from "@/components/ParticleField";
+import { MagneticButton } from "@/components/MagneticButton";
+import { ScrollTicker } from "@/components/ScrollTicker";
 
 
 export const Route = createFileRoute("/")({
@@ -97,14 +100,16 @@ function Index() {
                 {t("hero.desc")}
               </motion.p>
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="mt-8 flex flex-wrap gap-3">
-                <motion.a whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }} href="#services" className="group inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30">
-                  {t("hero.cta.services")}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </motion.a>
-                <motion.a whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }} href="tel:+919106158544" className="inline-flex items-center gap-2 rounded-md border border-border bg-card/80 backdrop-blur px-5 py-3 text-sm font-medium text-foreground">
-                  <TerminalIcon className="h-4 w-4" />
-                  {t("hero.cta.call")}
-                </motion.a>
+                <MagneticButton href="#services" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30">
+                  <span className="shine" aria-hidden />
+                  <span className="relative z-10">{t("hero.cta.services")}</span>
+                  <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </MagneticButton>
+                <MagneticButton href="tel:+919106158544" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md border border-border bg-card/80 px-5 py-3 text-sm font-medium text-foreground backdrop-blur">
+                  <span className="shine" aria-hidden />
+                  <TerminalIcon className="relative z-10 h-4 w-4 transition-transform group-hover:rotate-12" />
+                  <span className="relative z-10">{t("hero.cta.call")}</span>
+                </MagneticButton>
               </motion.div>
               <div className="mt-8">
                 <TechBadges />
