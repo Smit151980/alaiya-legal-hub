@@ -72,6 +72,7 @@ function Index() {
         <div className="absolute inset-0 dot-grid opacity-40" aria-hidden />
         <CodeRain />
         <CircuitLines className="opacity-60" />
+        <ParticleField className="opacity-70" />
         <div className="blob left-[-10%] top-[-10%] h-[380px] w-[380px]" style={{ background: "var(--color-primary)" }} aria-hidden />
         <div className="blob right-[-8%] top-[20%] h-[420px] w-[420px]" style={{ background: "var(--color-accent)", animationDelay: "-6s" }} aria-hidden />
 
@@ -133,6 +134,8 @@ function Index() {
 
       <TechMarquee />
 
+      <ScrollTicker text="ship fast · stay built" />
+
       <section id="services" className="mx-auto max-w-6xl px-6 py-24">
         <Reveal>
           <div className="max-w-2xl">
@@ -177,6 +180,7 @@ function Index() {
 
       <section className="relative overflow-hidden border-y border-border/60 bg-card/30">
         <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
+        <ParticleField className="opacity-50" density={30} />
         <div className="mx-auto max-w-6xl px-6 py-24 relative">
           <Reveal>
             <div className="max-w-2xl">
