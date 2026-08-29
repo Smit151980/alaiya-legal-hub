@@ -232,7 +232,7 @@ function RolePage() {
   return (
     <div className="relative">
       <section className="border-b border-border/60 dot-grid">
-        <div className="mx-auto max-w-5xl px-6 py-20">
+        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
           <Link
             to="/careers"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition"
@@ -287,7 +287,7 @@ function RolePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 py-16">
+      <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="grid gap-5 md:grid-cols-2">
           <Reveal>
             <TiltCard className="h-full rounded-xl border border-border/60 bg-card/60 p-6">

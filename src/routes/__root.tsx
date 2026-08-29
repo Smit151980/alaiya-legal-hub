@@ -157,7 +157,7 @@ function Footer() {
   const { t } = useI18n();
   return (
     <footer className="border-t border-border/60 bg-card/50">
-      <div className="mx-auto max-w-6xl px-6 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div>
             <div className="flex items-center gap-2">
@@ -169,7 +169,7 @@ function Footer() {
               {t("footer.contact")}: <a href="tel:+919106158544" className="text-foreground hover:underline">+91 91061 58544</a>
             </p>
           </div>
-          <nav className="flex gap-6 text-sm text-muted-foreground">
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
             <Link to="/" className="hover:text-foreground">{t("nav.home")}</Link>
             <Link to="/careers" className="hover:text-foreground">{t("nav.careers")}</Link>
             <Link to="/privacy" className="hover:text-foreground">{t("nav.privacy")}</Link>

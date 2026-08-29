@@ -33,7 +33,7 @@ function Careers() {
   return (
     <div className="relative">
       <section className="relative overflow-hidden border-b border-border/60 dot-grid">
-        <div className="mx-auto max-w-6xl px-6 py-24">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ function Careers() {
         </div>
       </section>
 
-      <section id="open-roles" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="open-roles" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
         <Reveal>
           <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">Open roles</h2>
           <p className="mt-2 text-muted-foreground">Don't see a match? Call us anyway — we hire for talent, not tickets.</p>
@@ -121,7 +121,7 @@ function Careers() {
       </section>
 
       <section className="border-y border-border/60 bg-card/30">
-        <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <Reveal>
             <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">Why work here</h2>
           </Reveal>
@@ -139,7 +139,7 @@ function Careers() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
         <Reveal>
           <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">How hiring works</h2>
         </Reveal>
