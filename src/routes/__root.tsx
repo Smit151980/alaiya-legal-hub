@@ -7,8 +7,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, type ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -79,6 +80,13 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function Header() {
   const { t } = useI18n();
+  const [open, setOpen] = useState(false);
+  const links = [
+    { to: "/", label: t("nav.home") },
+    { to: "/careers", label: t("nav.careers") },
+    { to: "/privacy", label: t("nav.privacy") },
+    { to: "/terms", label: t("nav.terms") },
+  ] as const;
   return (
     <motion.header
       initial={{ y: -30, opacity: 0 }}
@@ -86,26 +94,64 @@ function Header() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur"
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
-        <Link to="/" className="flex items-center gap-2 group">
+      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-6 sm:py-3.5">
+        <Link to="/" className="flex min-w-0 items-center gap-2 group">
           <motion.img
             whileHover={{ rotate: 8, scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
             src={logoAsset.url}
             alt="Alaiya Technologies logo"
-            className="h-9 w-9 rounded-lg object-cover"
+            className="h-8 w-8 shrink-0 rounded-lg object-cover sm:h-9 sm:w-9"
           />
-          <span className="font-display text-lg font-semibold tracking-tight">Alaiya Technologies</span>
+          <span className="truncate font-display text-base font-semibold tracking-tight sm:text-lg">
+            <span className="sm:hidden">Alaiya</span>
+            <span className="hidden sm:inline">Alaiya Technologies</span>
+          </span>
         </Link>
-        <nav className="flex items-center gap-4 md:gap-6 text-sm">
-          <Link to="/" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.home")}</Link>
-          <Link to="/careers" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.careers")}</Link>
-          <Link to="/privacy" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.privacy")}</Link>
-          <Link to="/terms" className="hidden sm:inline text-muted-foreground hover:text-foreground transition-colors">{t("nav.terms")}</Link>
+        <nav className="flex items-center gap-3 text-sm md:gap-6">
+          {links.map((l) => (
+            <Link key={l.to} to={l.to} className="hidden md:inline text-muted-foreground hover:text-foreground transition-colors">{l.label}</Link>
+          ))}
           <LanguagePicker />
           <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Menu"
+            aria-expanded={open}
+            className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card text-foreground md:hidden"
+          >
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
         </nav>
       </div>
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="overflow-hidden border-t border-border/60 bg-background/95 md:hidden"
+          >
+            <div className="flex flex-col px-4 py-2">
+              {links.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setOpen(false)}
+                  className="rounded-md px-2 py-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                >
+                  {l.label}
+                </Link>
+              ))}
+              <a href="tel:+919106158544" className="mt-1 mb-2 rounded-md bg-primary px-3 py-3 text-center text-sm font-medium text-primary-foreground">
+                +91 91061 58544
+              </a>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
@@ -114,7 +160,7 @@ function Footer() {
   const { t } = useI18n();
   return (
     <footer className="border-t border-border/60 bg-card/50">
-      <div className="mx-auto max-w-6xl px-6 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div>
             <div className="flex items-center gap-2">
@@ -126,7 +172,7 @@ function Footer() {
               {t("footer.contact")}: <a href="tel:+919106158544" className="text-foreground hover:underline">+91 91061 58544</a>
             </p>
           </div>
-          <nav className="flex gap-6 text-sm text-muted-foreground">
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
             <Link to="/" className="hover:text-foreground">{t("nav.home")}</Link>
             <Link to="/careers" className="hover:text-foreground">{t("nav.careers")}</Link>
             <Link to="/privacy" className="hover:text-foreground">{t("nav.privacy")}</Link>

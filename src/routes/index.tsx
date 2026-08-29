@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { Terminal as TerminalIcon, Cloud, Sparkles, Code2, Database, Shield, GitBranch, ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Reveal } from "@/components/Reveal";
 import { Terminal } from "@/components/Terminal";
 import { TechMarquee } from "@/components/TechMarquee";
@@ -36,6 +37,7 @@ const SERVICE_ICONS = [Cloud, Sparkles, Code2, GitBranch];
 
 function Index() {
   const { t } = useI18n();
+  const isMobile = useIsMobile();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, 140]), { stiffness: 120, damping: 24 });
@@ -66,19 +68,19 @@ function Index() {
 
   return (
     <>
-      <CursorGlow />
+      {!isMobile && <CursorGlow />}
       <section ref={heroRef} className="gradient-hero relative">
         <div className="absolute inset-0 grid-bg" aria-hidden />
         <div className="absolute inset-0 dot-grid opacity-40" aria-hidden />
-        <CodeRain />
-        <CircuitLines className="opacity-60" />
-        <ParticleField className="opacity-70" />
-        <div className="blob left-[-10%] top-[-10%] h-[380px] w-[380px]" style={{ background: "var(--color-primary)" }} aria-hidden />
-        <div className="blob right-[-8%] top-[20%] h-[420px] w-[420px]" style={{ background: "var(--color-accent)", animationDelay: "-6s" }} aria-hidden />
+        {!isMobile && <CodeRain />}
+        <CircuitLines className="opacity-40 sm:opacity-60" />
+        <ParticleField className="opacity-60 sm:opacity-70" density={isMobile ? 18 : 46} />
+        <div className="blob left-[-10%] top-[-10%] h-[220px] w-[220px] sm:h-[380px] sm:w-[380px]" style={{ background: "var(--color-primary)" }} aria-hidden />
+        <div className="blob right-[-8%] top-[20%] h-[240px] w-[240px] sm:h-[420px] sm:w-[420px]" style={{ background: "var(--color-accent)", animationDelay: "-6s" }} aria-hidden />
 
-        <motion.div style={{ y, opacity, scale, filter: blur }} className="mx-auto max-w-6xl px-6 py-24 md:py-28 relative">
+        <motion.div style={isMobile ? undefined : { y, opacity, scale, filter: blur }} className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 md:py-28 relative">
 
-          <div className="grid gap-12 md:grid-cols-2 md:items-center">
+          <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <div>
               <motion.span
                 initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
@@ -90,23 +92,23 @@ function Index() {
                 </span>
                 {t("hero.badge")}
               </motion.span>
-              <h1 className="mt-6 text-5xl font-bold tracking-tight md:text-6xl">
+              <h1 className="mt-5 text-[2.1rem] leading-[1.1] font-bold tracking-tight sm:text-5xl md:text-6xl">
                 {t("hero.title.a").split(" ").map((w, i) => (
                   <motion.span key={i} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.55, delay: 0.1 + i * 0.06, ease: [0.22, 1, 0.36, 1] }} className="inline-block mr-2">{w}</motion.span>
                 ))}
                 <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-gradient inline-block">{t("hero.title.b")}</motion.span>
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>{t("hero.title.c")}</motion.span>
               </h1>
-              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="mt-6 text-lg text-muted-foreground md:text-xl">
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="mt-5 text-base text-muted-foreground sm:text-lg md:text-xl">
                 {t("hero.desc")}
               </motion.p>
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="mt-8 flex flex-wrap gap-3">
-                <MagneticButton href="#services" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <MagneticButton href="#services" strength={isMobile ? 0 : 18} className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-md bg-primary px-5 py-3.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30 sm:w-auto sm:py-3">
                   <span className="shine" aria-hidden />
                   <span className="relative z-10">{t("hero.cta.services")}</span>
                   <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </MagneticButton>
-                <MagneticButton href="tel:+919106158544" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md border border-border bg-card/80 px-5 py-3 text-sm font-medium text-foreground backdrop-blur">
+                <MagneticButton href="tel:+919106158544" strength={isMobile ? 0 : 18} className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-md border border-border bg-card/80 px-5 py-3.5 text-sm font-medium text-foreground backdrop-blur sm:w-auto sm:py-3">
                   <span className="shine" aria-hidden />
                   <TerminalIcon className="relative z-10 h-4 w-4 transition-transform group-hover:rotate-12" />
                   <span className="relative z-10">{t("hero.cta.call")}</span>
@@ -136,7 +138,7 @@ function Index() {
 
       <ScrollTicker text="ship fast · stay built" />
 
-      <section id="services" className="mx-auto max-w-6xl px-6 py-24">
+      <section id="services" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <Reveal>
           <div className="max-w-2xl">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">// services</span>
@@ -181,7 +183,7 @@ function Index() {
       <section className="relative overflow-hidden border-y border-border/60 bg-card/30">
         <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
         <ParticleField className="opacity-50" density={30} />
-        <div className="mx-auto max-w-6xl px-6 py-24 relative">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 relative">
           <Reveal>
             <div className="max-w-2xl">
               <span className="font-mono text-xs uppercase tracking-widest text-accent">// workflow</span>
@@ -225,7 +227,7 @@ function Index() {
       </section>
 
       <section className="border-y border-border/60 bg-card/20">
-        <div className="mx-auto max-w-4xl px-6 py-24">
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
           <Reveal>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">// clients</span>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-tight md:text-4xl">
@@ -241,7 +243,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <Reveal>
             <div>
