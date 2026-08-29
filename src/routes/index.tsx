@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { Terminal as TerminalIcon, Cloud, Sparkles, Code2, Database, Shield, GitBranch, ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Reveal } from "@/components/Reveal";
 import { Terminal } from "@/components/Terminal";
 import { TechMarquee } from "@/components/TechMarquee";
@@ -36,6 +37,7 @@ const SERVICE_ICONS = [Cloud, Sparkles, Code2, GitBranch];
 
 function Index() {
   const { t } = useI18n();
+  const isMobile = useIsMobile();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, 140]), { stiffness: 120, damping: 24 });
