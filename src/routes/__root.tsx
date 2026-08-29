@@ -103,7 +103,10 @@ function Header() {
             alt="Alaiya Technologies logo"
             className="h-8 w-8 shrink-0 rounded-lg object-cover sm:h-9 sm:w-9"
           />
-          <span className="truncate font-display text-base font-semibold tracking-tight sm:text-lg">Alaiya Technologies</span>
+          <span className="truncate font-display text-base font-semibold tracking-tight sm:text-lg">
+            <span className="sm:hidden">Alaiya</span>
+            <span className="hidden sm:inline">Alaiya Technologies</span>
+          </span>
         </Link>
         <nav className="flex items-center gap-3 text-sm md:gap-6">
           {links.map((l) => (
