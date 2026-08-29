@@ -66,19 +66,19 @@ function Index() {
 
   return (
     <>
-      <CursorGlow />
+      {!isMobile && <CursorGlow />}
       <section ref={heroRef} className="gradient-hero relative">
         <div className="absolute inset-0 grid-bg" aria-hidden />
         <div className="absolute inset-0 dot-grid opacity-40" aria-hidden />
-        <CodeRain />
-        <CircuitLines className="opacity-60" />
-        <ParticleField className="opacity-70" />
-        <div className="blob left-[-10%] top-[-10%] h-[380px] w-[380px]" style={{ background: "var(--color-primary)" }} aria-hidden />
-        <div className="blob right-[-8%] top-[20%] h-[420px] w-[420px]" style={{ background: "var(--color-accent)", animationDelay: "-6s" }} aria-hidden />
+        {!isMobile && <CodeRain />}
+        <CircuitLines className="opacity-40 sm:opacity-60" />
+        <ParticleField className="opacity-60 sm:opacity-70" density={isMobile ? 18 : 46} />
+        <div className="blob left-[-10%] top-[-10%] h-[220px] w-[220px] sm:h-[380px] sm:w-[380px]" style={{ background: "var(--color-primary)" }} aria-hidden />
+        <div className="blob right-[-8%] top-[20%] h-[240px] w-[240px] sm:h-[420px] sm:w-[420px]" style={{ background: "var(--color-accent)", animationDelay: "-6s" }} aria-hidden />
 
-        <motion.div style={{ y, opacity, scale, filter: blur }} className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 md:py-28 relative">
+        <motion.div style={isMobile ? undefined : { y, opacity, scale, filter: blur }} className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 md:py-28 relative">
 
-          <div className="grid gap-12 md:grid-cols-2 md:items-center">
+          <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <div>
               <motion.span
                 initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
@@ -100,13 +100,13 @@ function Index() {
               <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="mt-5 text-base text-muted-foreground sm:text-lg md:text-xl">
                 {t("hero.desc")}
               </motion.p>
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="mt-8 flex flex-wrap gap-3">
-                <MagneticButton href="#services" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <MagneticButton href="#services" strength={isMobile ? 0 : 18} className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-md bg-primary px-5 py-3.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30 sm:w-auto sm:py-3">
                   <span className="shine" aria-hidden />
                   <span className="relative z-10">{t("hero.cta.services")}</span>
                   <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </MagneticButton>
-                <MagneticButton href="tel:+919106158544" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-md border border-border bg-card/80 px-5 py-3 text-sm font-medium text-foreground backdrop-blur">
+                <MagneticButton href="tel:+919106158544" strength={isMobile ? 0 : 18} className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-md border border-border bg-card/80 px-5 py-3.5 text-sm font-medium text-foreground backdrop-blur sm:w-auto sm:py-3">
                   <span className="shine" aria-hidden />
                   <TerminalIcon className="relative z-10 h-4 w-4 transition-transform group-hover:rotate-12" />
                   <span className="relative z-10">{t("hero.cta.call")}</span>
