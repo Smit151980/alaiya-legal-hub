@@ -90,14 +90,14 @@ function Index() {
                 </span>
                 {t("hero.badge")}
               </motion.span>
-              <h1 className="mt-6 text-5xl font-bold tracking-tight md:text-6xl">
+              <h1 className="mt-5 text-[2.1rem] leading-[1.1] font-bold tracking-tight sm:text-5xl md:text-6xl">
                 {t("hero.title.a").split(" ").map((w, i) => (
                   <motion.span key={i} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.55, delay: 0.1 + i * 0.06, ease: [0.22, 1, 0.36, 1] }} className="inline-block mr-2">{w}</motion.span>
                 ))}
                 <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-gradient inline-block">{t("hero.title.b")}</motion.span>
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>{t("hero.title.c")}</motion.span>
               </h1>
-              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="mt-6 text-lg text-muted-foreground md:text-xl">
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="mt-5 text-base text-muted-foreground sm:text-lg md:text-xl">
                 {t("hero.desc")}
               </motion.p>
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="mt-8 flex flex-wrap gap-3">
@@ -225,7 +225,7 @@ function Index() {
       </section>
 
       <section className="border-y border-border/60 bg-card/20">
-        <div className="mx-auto max-w-4xl px-6 py-24">
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
           <Reveal>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">// clients</span>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-tight md:text-4xl">
