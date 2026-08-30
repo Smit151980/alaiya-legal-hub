@@ -4,13 +4,11 @@ type Theme = "light" | "dark";
 const ThemeCtx = createContext<{ theme: Theme; toggle: () => void } | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     const saved = localStorage.getItem("theme") as Theme | null;
-    const prefers = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const initial = saved ?? prefers;
-    setTheme(initial);
+    setTheme(saved ?? "dark");
   }, []);
 
   useEffect(() => {
