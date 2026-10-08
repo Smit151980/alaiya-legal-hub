@@ -32,7 +32,8 @@ export function CodeRain({ className = "" }: { className?: string }) {
     const draw = (t: number) => {
       if (t - last > 60) {
         last = t;
-        ctx.fillStyle = "rgba(0,0,0,0.08)";
+        const colors = getComputedStyle(canvas);
+        ctx.fillStyle = colors.getPropertyValue("--code-rain-trail").trim();
         ctx.fillRect(0, 0, width, height);
         ctx.font = "13px ui-monospace, monospace";
         for (let i = 0; i < cols; i++) {
@@ -41,8 +42,8 @@ export function CodeRain({ className = "" }: { className?: string }) {
           const y = drops[i] * 16;
           const isHead = Math.random() > 0.975;
           ctx.fillStyle = isHead
-            ? "oklch(0.85 0.18 220 / 0.9)"
-            : "oklch(0.7 0.17 220 / 0.55)";
+            ? colors.getPropertyValue("--code-rain-head").trim()
+            : colors.getPropertyValue("--code-rain-body").trim();
           ctx.fillText(ch, x, y);
           if (y > height && Math.random() > 0.975) drops[i] = 0;
           drops[i]++;
