@@ -92,14 +92,14 @@ function Index() {
                 </span>
                 {t("hero.badge")}
               </motion.span>
-              <h1 className="mt-5 text-[2.1rem] leading-[1.1] font-bold tracking-tight sm:text-5xl md:text-6xl">
+              <h1 className="type-hero mt-6 max-w-[11ch]">
                 {t("hero.title.a").split(" ").map((w, i) => (
                   <motion.span key={i} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.55, delay: 0.1 + i * 0.06, ease: [0.22, 1, 0.36, 1] }} className="inline-block mr-2">{w}</motion.span>
                 ))}
                 <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-gradient inline-block">{t("hero.title.b")}</motion.span>
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>{t("hero.title.c")}</motion.span>
               </h1>
-              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="mt-5 text-base text-muted-foreground sm:text-lg md:text-xl">
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="mt-6 max-w-[34rem] text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
                 {t("hero.desc")}
               </motion.p>
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -141,12 +141,12 @@ function Index() {
       <section id="services" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <Reveal>
           <div className="max-w-2xl">
-            <span className="font-mono text-xs uppercase tracking-widest text-primary">// services</span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+            <span className="type-label text-primary">// services</span>
+            <h2 className="type-section mt-3">
               <GlitchText text={t("services.title")} />
             </h2>
 
-            <p className="mt-4 text-muted-foreground">{t("services.sub")}</p>
+            <p className="mt-5 max-w-[60ch] text-base leading-7 text-muted-foreground">{t("services.sub")}</p>
           </div>
         </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -186,9 +186,9 @@ function Index() {
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 relative">
           <Reveal>
             <div className="max-w-2xl">
-              <span className="font-mono text-xs uppercase tracking-widest text-accent">// workflow</span>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl"><GlitchText text="How we build" /></h2>
-              <p className="mt-4 text-muted-foreground">A pragmatic engineering loop tuned for velocity without cutting corners.</p>
+              <span className="type-label text-accent">// workflow</span>
+              <h2 className="type-section mt-3"><GlitchText text="How we build" /></h2>
+              <p className="mt-5 max-w-[60ch] leading-7 text-muted-foreground">A pragmatic engineering loop tuned for velocity without cutting corners.</p>
             </div>
           </Reveal>
           <div className="mt-12 grid gap-4 md:grid-cols-4">
@@ -229,8 +229,8 @@ function Index() {
       <section className="border-y border-border/60 bg-card/20">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
           <Reveal>
-            <span className="font-mono text-xs uppercase tracking-widest text-primary">// clients</span>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight md:text-4xl">
+            <span className="type-label text-primary">// clients</span>
+            <h2 className="type-section mt-3">
               <GlitchText text="What clients say" />
             </h2>
             <p className="mt-2 text-muted-foreground">Reviews from teams we've shipped with.</p>
@@ -247,9 +247,9 @@ function Index() {
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <Reveal>
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-primary">// impact</span>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">{t("cta.title")}</h2>
-              <p className="mt-4 text-muted-foreground">{t("cta.desc")}</p>
+              <span className="type-label text-primary">// impact</span>
+              <h2 className="type-section mt-3">{t("cta.title")}</h2>
+              <p className="mt-5 max-w-[60ch] leading-7 text-muted-foreground">{t("cta.desc")}</p>
               <div className="mt-8 flex gap-4">
                 <Link to="/terms" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">{t("nav.terms")} <ArrowRight className="h-3 w-3" /></Link>
                 <Link to="/privacy" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">{t("nav.privacy")} <ArrowRight className="h-3 w-3" /></Link>

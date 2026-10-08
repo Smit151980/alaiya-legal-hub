@@ -23,7 +23,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
-  --font-display: "Archivo", "Inter", system-ui, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
 }
 
@@ -73,7 +73,52 @@
     font-family: var(--font-sans);
     transition: background-color 0.4s ease, color 0.4s ease;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+  h1 { line-height: 0.94; }
+  h2 { line-height: 1.05; }
+  h3, h4 { line-height: 1.2; }
+  p, li { line-height: 1.7; }
+}
+
+@utility type-hero {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+@utility type-section {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+@utility type-label {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .type-hero { font-size: 4rem; }
+  .type-section { font-size: 2.5rem; }
+}
+
+@media (min-width: 768px) {
+  .type-hero { font-size: 4.75rem; }
+  .type-section { font-size: 3rem; }
 }
 
 @utility gradient-hero {
@@ -140,7 +185,7 @@
   animation: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.font-mono { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0.04em; }
+.font-mono { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0; }
 
 /* pointer spotlight that follows the cursor across a card */
 @utility spotlight {

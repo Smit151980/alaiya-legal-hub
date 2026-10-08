@@ -7,6 +7,8 @@ export const Route = createFileRoute("/terms")({
       { name: "description", content: "The terms governing use of the Alaiya Technologies website and services." },
       { property: "og:title", content: "Terms of Service — Alaiya Technologies" },
       { property: "og:description", content: "Terms governing use of Alaiya Technologies services." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Terms,
@@ -16,9 +18,9 @@ function Terms() {
   return (
     <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
       <header className="mb-12">
-        <p className="text-sm text-muted-foreground">Last updated: January 2025</p>
-        <h1 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">Terms of Service</h1>
-        <p className="mt-4 text-muted-foreground">
+        <p className="type-label text-muted-foreground">Last updated: January 2025</p>
+        <h1 className="type-hero mt-4">Terms of Service</h1>
+        <p className="mt-6 max-w-[62ch] text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
           These terms govern your use of the website and services provided by Alaiya Technologies (Sole Proprietorship) ("Alaiya", "we", "us"). By using our site or services, you agree to these terms.
         </p>
       </header>
@@ -62,8 +64,8 @@ function Terms() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section>
-      <h2 className="text-xl font-semibold">{title}</h2>
-      <div className="mt-3 text-muted-foreground leading-relaxed">{children}</div>
+      <h2 className="text-2xl font-bold leading-tight">{title}</h2>
+      <div className="mt-4 max-w-[68ch] text-base leading-7 text-muted-foreground">{children}</div>
     </section>
   );
 }

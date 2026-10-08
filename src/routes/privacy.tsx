@@ -7,6 +7,8 @@ export const Route = createFileRoute("/privacy")({
       { name: "description", content: "How Alaiya Technologies collects, uses, and protects your information." },
       { property: "og:title", content: "Privacy Policy — Alaiya Technologies" },
       { property: "og:description", content: "How Alaiya Technologies handles your data." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Privacy,
@@ -16,9 +18,9 @@ function Privacy() {
   return (
     <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
       <header className="mb-12">
-        <p className="text-sm text-muted-foreground">Last updated: January 2025</p>
-        <h1 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">Privacy Policy</h1>
-        <p className="mt-4 text-muted-foreground">
+        <p className="type-label text-muted-foreground">Last updated: January 2025</p>
+        <h1 className="type-hero mt-4">Privacy Policy</h1>
+        <p className="mt-6 max-w-[62ch] text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
           This page is maintained by Alaiya Technologies (Sole Proprietorship) ("Alaiya", "we", "us") to explain how we handle information when you use our website and services.
         </p>
       </header>
@@ -56,8 +58,8 @@ function Privacy() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section>
-      <h2 className="text-xl font-semibold">{title}</h2>
-      <div className="mt-3 text-muted-foreground leading-relaxed">{children}</div>
+      <h2 className="text-2xl font-bold leading-tight">{title}</h2>
+      <div className="mt-4 max-w-[68ch] text-base leading-7 text-muted-foreground">{children}</div>
     </section>
   );
 }
