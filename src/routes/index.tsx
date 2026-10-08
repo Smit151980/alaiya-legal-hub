@@ -28,6 +28,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Alaiya Technologies designs and builds cloud platforms, AI products, and custom software for modern businesses." },
       { property: "og:title", content: "Alaiya Technologies" },
       { property: "og:description", content: "Cloud platforms, AI products, and custom software." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
