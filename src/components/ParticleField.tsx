@@ -36,7 +36,7 @@ export function ParticleField({ className = "", density = 46 }: { className?: st
     };
 
     const color = () =>
-      getComputedStyle(canvas).getPropertyValue("--color-primary").trim() || "#3b82f6";
+      getComputedStyle(canvas).getPropertyValue("--primary").trim();
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
