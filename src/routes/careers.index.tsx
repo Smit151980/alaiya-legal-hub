@@ -49,7 +49,7 @@ function Careers() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.6 }}
-            className="mt-5 font-display text-4xl font-bold tracking-tight md:text-6xl"
+            className="type-hero mt-6 max-w-[13ch]"
           >
             <GlitchText text="Build things" /> that stay built.
           </motion.h1>
@@ -57,7 +57,7 @@ function Careers() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16, duration: 0.6 }}
-            className="mt-5 max-w-2xl text-muted-foreground"
+            className="mt-6 max-w-[62ch] text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8"
           >
             Alaiya Technologies (Sole Proprietorship) is a small senior team shipping cloud, AI, and custom software.
             If you like owning problems end to end, we'd like to talk.
@@ -80,7 +80,7 @@ function Careers() {
 
       <section id="open-roles" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
         <Reveal>
-          <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">Open roles</h2>
+          <h2 className="type-section">Open roles</h2>
           <p className="mt-2 text-muted-foreground">Don't see a match? Call us anyway — we hire for talent, not tickets.</p>
         </Reveal>
 
@@ -123,7 +123,7 @@ function Careers() {
       <section className="border-y border-border/60 bg-card/30">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <Reveal>
-            <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">Why work here</h2>
+            <h2 className="type-section">Why work here</h2>
           </Reveal>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {perks.map((p, i) => (
@@ -141,7 +141,7 @@ function Careers() {
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
         <Reveal>
-          <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">How hiring works</h2>
+          <h2 className="type-section">How hiring works</h2>
         </Reveal>
         <div className="mt-10 grid gap-5 md:grid-cols-4">
           {[

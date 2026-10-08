@@ -243,7 +243,7 @@ function RolePage() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mt-6 font-display text-4xl font-bold tracking-tight md:text-5xl"
+            className="type-hero mt-7 max-w-[14ch]"
           >
             <GlitchText text={role.title} />
           </motion.h1>
@@ -261,7 +261,7 @@ function RolePage() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16, duration: 0.5 }}
-            className="mt-6 max-w-2xl text-muted-foreground"
+            className="mt-6 max-w-[62ch] text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8"
           >
             {role.about}
           </motion.p>
